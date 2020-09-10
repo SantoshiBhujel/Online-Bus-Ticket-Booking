@@ -25,3 +25,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 //  ROUTE FOR ADMIN DASHBOARD
 //  --------------------------
 Route::get('admin', 'HomeController@admin')->name('admin')->middleware('admin');
+Route::get('admin/dashboard', 'AdminController@adminDashboard')->name('adminDashboard')->middleware('admin');
+
+Route::get('admin/agent/details', 'AdminController@agentDetails')->name('agentDetails')->middleware('admin');
+Route::get('admin/agent/create', 'AdminController@agentCreate')->name('agentCreate')->middleware('admin');
+
+Route::get('admin/vehicle/details', 'AdminController@vehicleDetails')->name('vehicleDetails')->middleware('admin');
+Route::get('admin/vehicle/type/create', 'AdminController@vehicleTypeCreate')->name('vehicleTypeCreate')->middleware('admin');
+Route::get('admin/vehicle/create', 'AdminController@vehicleCreate')->name('vehicleCreate')->middleware('admin');
+
+
+Route::get('admin/offers/details', 'AdminController@offersDetails')->name('offersDetails')->middleware('admin');
+Route::get('admin/offers/create', 'AdminController@offersCreate')->name('offersCreate')->middleware('admin');
+
+
+Route::get('admin/employee/details', 'AdminController@employeeDetails')->name('employeeDetails')->middleware('admin');
+Route::get('admin/employee/create', 'AdminController@employeeCreate')->name('employeeCreate')->middleware('admin');

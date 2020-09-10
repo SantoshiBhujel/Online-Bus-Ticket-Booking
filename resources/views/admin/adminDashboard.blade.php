@@ -17,64 +17,183 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
+
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+
+     <!-- Bootstrap CSS CDN -->
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+     <!-- Our Custom CSS -->
+     <link rel="stylesheet" href="style.css">
+ 
+     <!-- Font Awesome JS -->
+     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->first_name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3>Bus Booking</h3>
                 </div>
-            </div>
-        </nav>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+                <ul class="list-unstyled components">
+                    <p>{{ Auth::user()->first_name }}</p>
+                    <li class=@yield('adminDashboardclass')>
+                        <a href="{{ route('adminDashboard') }}" data-toggle="collapse" aria-expanded="false">
+                            <i class="glyphicon glyphicon-home"></i>
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li class=@yield('agentClass')>
+                        <a href="#agentSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="glyphicon glyphicon-duplicate"></i>
+                            Agent
+                        </a>
+                        <ul class="collapse list-unstyled" id="agentSubmenu">
+                            <li><a href="{{ route('agentDetails') }}">Agent Details</a></li>
+                            <li><a href="{{ route('agentCreate') }}">Add Agent</a></li>
+                        </ul>
+                    </li>
+                    <li class=@yield('vehicleClass')>
+                        <a href="#vehicleManagementSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="glyphicon glyphicon-duplicate"></i>
+                            Vehicle Management
+                        </a>
+                        <ul class="collapse list-unstyled" id="vehicleManagementSubmenu">
+                            <li><a href="{{ route('vehicleDetails') }}">Vehicle Details</a></li>
+                            <li><a href="{{ route('vehicleTypeCreate') }}">Add Vehicle Type</a></li>
+                            <li><a href="{{ route('vehicleCreate') }}">Add Vehicle</a></li>
+                        </ul>
+                    </li>
+                    <li class=@yield('employeeClass')>
+                        <a href="#employeeSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="glyphicon glyphicon-duplicate"></i>
+                            Employee
+                        </a>
+                        <ul class="collapse list-unstyled" id="employeeSubmenu">
+                            <li><a href="{{ route('employeeDetails') }}">Employee Details</a></li>
+                            <li><a href="{{ route('employeeCreate') }}">Add Employee</a></li>
+                        </ul>
+                    </li>
+                    <li class=@yield('offerClass')>
+                        <a href="#offerSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="glyphicon glyphicon-duplicate"></i>
+                            Offers
+                        </a>
+                        <ul class="collapse list-unstyled" id="offerSubmenu">
+                            <li><a href="#">Offers Details</a></li>
+                            <li><a href="#">Add Offers</a></li>
+                        </ul>
+                    </li>
+                    <li class=@yield('tripClass')>
+                        <a href="#tripManagementSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="glyphicon glyphicon-duplicate"></i>
+                            Trip Management
+                        </a>
+                        <ul class="collapse list-unstyled" id="tripManagementSubmenu">
+                            <li><a href="#">Destination Add</a></li>
+                            <li><a href="#">Add Route </a></li>
+                            <li><a href="#">Create Trip</a></li>
+                        </ul>
+                    </li>
+
+                    <li class=@yield('priceClass')>
+                        <a href="#priceSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="glyphicon glyphicon-duplicate"></i>
+                            Price
+                        </a>
+                        <ul class="collapse list-unstyled" id="priceSubmenu">
+                            <li><a href="#">Add Price</a></li>
+                        </ul>
+                    </li>
+
+                    <li class=@yield('bookingClass')>
+                        <a href="#bookingSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="glyphicon glyphicon-duplicate"></i>
+                            Booking
+                        </a>
+                        <ul class="collapse list-unstyled" id="bookingSubmenu">
+                            <li><a href="#">Booking Details</a></li>
+                            <li><a href="#">Add Booking</a></li>
+                        </ul>
+                    </li>
+
+                    <li class=@yield('refundClass')>
+                        <a href="#refundSubmenu" data-toggle="collapse" aria-expanded="false">
+                            <i class="glyphicon glyphicon-duplicate"></i>
+                            Refund
+                        </a>
+                        <ul class="collapse list-unstyled" id="refundSubmenu">
+                            <li><a href="#">Add Refund</a></li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-link"></i>
+                            Portfolio
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-paperclip"></i>
+                            FAQ
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-send"></i>
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Page Content Holder -->
+            <div id="content">
+
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+
+                        <div class="navbar-header">
+                            <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                                <i class="glyphicon glyphicon-align-left"></i>
+                                <span>Toggle Sidebar</span>
+                            </button>
+                        </div>
+
+                        <div class="" id="">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf 
+                                <button class="btn btn-primary">Logout</button>
+                            </form>
+                                
+                        </div>
+                       
+                    </div>
+                </nav>
+
+                @yield('body')
+                
     </div>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Bootstrap Js CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });
+    </script>
+
 </body>
 </html>
