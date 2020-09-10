@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Online Bus Ticket Booking System
                 </div>
 
                 <div class="links">
