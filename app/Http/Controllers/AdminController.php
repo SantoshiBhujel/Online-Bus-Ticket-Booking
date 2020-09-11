@@ -11,16 +11,6 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function agentDetails()
-    {
-        return view('admin.agentDetails');
-    }
-
-    public function agentCreate()
-    {
-        return view('admin.agentCreate');
-    }
-
     public function vehicleDetails()
     {
         return view('admin.vehicleDetails');
