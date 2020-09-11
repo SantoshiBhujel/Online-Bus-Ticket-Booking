@@ -32,8 +32,12 @@ Route::get('admin/dashboard', 'AdminController@adminDashboard')->name('adminDash
 
 Route::resource('admin/agent', 'AgentController');
 
-Route::get('admin/vehicle/details', 'AdminController@vehicleDetails')->name('vehicleDetails')->middleware('admin');
-Route::get('admin/vehicle/type/create', 'AdminController@vehicleTypeCreate')->name('vehicleTypeCreate')->middleware('admin');
+
+Route::resource('admin/vehicleType', 'VehicleTypeController');
+
+
+// Route::get('admin/vehicle/details', 'AdminController@vehicleDetails')->name('vehicleDetails')->middleware('admin');
+// Route::get('admin/vehicle/type/create', 'AdminController@vehicleTypeCreate')->name('vehicleTypeCreate')->middleware('admin');
 Route::get('admin/vehicle/create', 'AdminController@vehicleCreate')->name('vehicleCreate')->middleware('admin');
 
 

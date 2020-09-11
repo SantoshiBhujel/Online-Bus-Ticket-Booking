@@ -64,8 +64,8 @@
                             Vehicle Management
                         </a>
                         <ul class="collapse list-unstyled" id="vehicleManagementSubmenu">
-                            <li><a href="{{ route('vehicleDetails') }}">Vehicle Details</a></li>
-                            <li><a href="{{ route('vehicleTypeCreate') }}">Add Vehicle Type</a></li>
+                            <li><a href="{{ route('vehicleType.index') }}">Vehicle Details</a></li>
+                            <li><a href="{{ route('vehicleType.create') }}">Add Vehicle Type</a></li>
                             <li><a href="{{ route('vehicleCreate') }}">Add Vehicle</a></li>
                         </ul>
                     </li>
