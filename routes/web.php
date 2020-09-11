@@ -35,6 +35,8 @@ Route::resource('admin/agent', 'AgentController');
 
 Route::resource('admin/vehicleType', 'VehicleTypeController');
 
+Route::resource('admin/vehicleFacilities', 'FacilitiesController');
+Route::get('admin/facilities/{id}','FacilitiesController@vehicleFacilitiesCreate')->name('vehicleFacilitiesCreate');
 
 // Route::get('admin/vehicle/details', 'AdminController@vehicleDetails')->name('vehicleDetails')->middleware('admin');
 // Route::get('admin/vehicle/type/create', 'AdminController@vehicleTypeCreate')->name('vehicleTypeCreate')->middleware('admin');

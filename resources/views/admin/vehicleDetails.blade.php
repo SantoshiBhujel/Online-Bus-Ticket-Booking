@@ -9,14 +9,14 @@
     <div class="col-md-12">
         <h2>Vehicle Types</h2>
         <div>
-            <table>
+            <table style="width:800px">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Layout</th>
                         <th>Total Seats</th>
-                        <th>Facilities</th>
+                        <th style="width:300px;">Facilities</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
@@ -36,7 +36,23 @@
                                 {{ $vehicleType->totalSeats }}
                             </td>
                             <td>
-                                <a href=""><i class="fas fa-plus-circle"></i></a>
+                                    @foreach ($vehicleType->facilities as $facility)
+                                        {{ $facility->id }}. {{ $facility->services }}<br>
+                                        <button>
+                                            <a href="{{ route('vehicleFacilities.edit',$facility) }}">
+                                                <i class="fas fa-pencil-alt"></i>
+                                            </a>
+                                        </button>
+        
+                                        <form action="{{ route('vehicleFacilities.destroy',$facility->id) }}" method="POST">
+                                            @csrf
+                                            {{method_field('DELETE')}}
+                                            <button><i class="fas fa-trash-alt"></i></button>
+                                        </form>
+                                    @endforeach
+                                    
+                               
+                                <a href="{{ route('vehicleFacilitiesCreate',$vehicleType->id) }}"><i class="fas fa-plus-circle"></i></a>
                             </td>
                             <td>
                                 {{ $vehicleType->status }}

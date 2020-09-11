@@ -37,7 +37,7 @@ class VehicleTypeController extends Controller
      */
     public function create()
     {
-        return view('admin.vehicleTypeCreate');
+        return view('admin.vehicleType.vehicleTypeCreate');
     }
 
     /**
@@ -85,7 +85,7 @@ class VehicleTypeController extends Controller
     public function edit(VehicleType $vehicleType)
     {
         $vehicleType= VehicleType::find($vehicleType->id);
-        return view('admin.vehicleTypeEdit',compact('vehicleType'));
+        return view('admin.vehicleType.vehicleTypeEdit',compact('vehicleType'));
     }
 
     /**
