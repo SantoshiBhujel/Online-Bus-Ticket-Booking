@@ -109,6 +109,10 @@ class FacilitiesController extends Controller
      */
     public function update(Request $request, $facilities)
     {
+        $this->validate($request,[
+            'name'=> 'required | string',
+            'services' => 'required | string',
+        ]);
         $facilities= Facilities::find($facilities);
 
         $facilities->update([

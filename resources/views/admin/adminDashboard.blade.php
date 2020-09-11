@@ -66,7 +66,7 @@
                         <ul class="collapse list-unstyled" id="vehicleManagementSubmenu">
                             <li><a href="{{ route('vehicleType.index') }}">Vehicle Details</a></li>
                             <li><a href="{{ route('vehicleType.create') }}">Add Vehicle Type</a></li>
-                            <li><a href="{{ route('vehicleCreate') }}">Add Vehicle</a></li>
+                            <li><a href="{{ route('vehicle.create') }}">Add Vehicle</a></li>
                         </ul>
                     </li>
                     <li class=@yield('employeeClass')>

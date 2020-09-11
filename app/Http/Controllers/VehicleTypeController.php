@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Vehicle;
 use App\VehicleType;
 use Illuminate\Http\Request;
 
@@ -27,7 +28,8 @@ class VehicleTypeController extends Controller
     public function index()
     {
         $vehicleTypes= VehicleType::all();
-        return view('admin.vehicleDetails',compact('vehicleTypes'));
+        $vehicles = Vehicle::all();
+        return view('admin.vehicleDetails',compact('vehicleTypes','vehicles'));
     }
 
     /**

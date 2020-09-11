@@ -11,22 +11,6 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function vehicleDetails()
-    {
-        return view('admin.vehicleDetails');
-    }
-
-    public function vehicleTypeCreate()
-    {
-        return view('admin.vehicleTypeCreate');
-    }
-
-    public function vehicleCreate()
-    {
-        return view('admin.vehicleCreate');
-    }
-
-
     public function employeeDetails()
     {
         return view('admin.employeeDetails');
@@ -36,7 +20,5 @@ class AdminController extends Controller
     {
         return view('admin.employeeCreate');
     }
-
-
     
 }
