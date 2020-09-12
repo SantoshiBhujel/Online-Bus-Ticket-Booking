@@ -120,8 +120,8 @@
                             Booking
                         </a>
                         <ul class="collapse list-unstyled" id="bookingSubmenu">
-                            <li><a href="#">Booking Details</a></li>
-                            <li><a href="#">Add Booking</a></li>
+                            <li><a href="{{ route('booking.index') }}">Booking Details</a></li>
+                            <li><a href="{{ route('booking.create') }}">Add Booking</a></li>
                         </ul>
                     </li>
 

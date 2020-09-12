@@ -77,4 +77,9 @@ Route::resource('admin/price', 'PriceController');
 //  ------------------
 Route::resource('admin/offer', 'OfferController');
 
+//  ------------------
+//  ROUTE FOR BOOKING
+//  ------------------
+Route::resource('admin/booking', 'BookingController');
+
 Route::get('admin/employee/create', 'AdminController@employeeCreate')->name('employeeCreate')->middleware('admin');
