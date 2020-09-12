@@ -109,7 +109,8 @@
                             Price
                         </a>
                         <ul class="collapse list-unstyled" id="priceSubmenu">
-                            <li><a href="#">Add Price</a></li>
+                            <li><a href="{{ route('price.index') }}">Price Details</a></li>
+                            <li><a href="{{ route('price.create') }}">Add Price</a></li>
                         </ul>
                     </li>
 

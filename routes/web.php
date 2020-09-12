@@ -67,6 +67,11 @@ Route::resource('admin/route', 'RouteController');
 //  ------------------
 Route::resource('admin/trip', 'TripController');
 
+//  -----------------
+//  ROUTE FOR PRICE
+//  ------------------
+Route::resource('admin/price', 'PriceController');
+
 Route::get('admin/offers/details', 'AdminController@offersDetails')->name('offersDetails')->middleware('admin');
 Route::get('admin/offers/create', 'AdminController@offersCreate')->name('offersCreate')->middleware('admin');
 
