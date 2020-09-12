@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Trip;
 use App\Route;
 use App\Destination;
 use Illuminate\Http\Request;
@@ -27,7 +28,8 @@ class DestinationController extends Controller
     {
         $destinations= Destination::all();
         $routes= Route::all();
-        return view('admin.destination.details',compact('destinations','routes'));
+        $trips= Trip::all();
+        return view('admin.destination.details',compact('destinations','routes','trips'));
     }
 
     /**

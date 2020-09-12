@@ -62,6 +62,11 @@ Route::post('admin/destination/{id}/previewUpdate','DestinationController@previe
 //  ------------------
 Route::resource('admin/route', 'RouteController');
 
+//  -----------------
+//  ROUTE FOR TRIP
+//  ------------------
+Route::resource('admin/trip', 'TripController');
+
 Route::get('admin/offers/details', 'AdminController@offersDetails')->name('offersDetails')->middleware('admin');
 Route::get('admin/offers/create', 'AdminController@offersCreate')->name('offersCreate')->middleware('admin');
 

@@ -99,7 +99,7 @@
                             <li><a href="{{ route('destination.index') }}"> Destination Details</a></li>
                             <li><a href="{{ route('destination.create') }}">Destination Add</a></li>
                             <li><a href="{{ route('route.create') }}">Add Route </a></li>
-                            <li><a href="#">Create Trip</a></li>
+                            <li><a href="{{ route('trip.create') }}">Create Trip</a></li>
                         </ul>
                     </li>
 

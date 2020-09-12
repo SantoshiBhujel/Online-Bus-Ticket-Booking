@@ -66,7 +66,7 @@
     <div class="col-md-12">
         <h2>Routes</h2>
         <div>
-            <table style="width:800px">
+            <table style="width:1000px">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -125,6 +125,57 @@
                                 </button>
 
                                 <form action="{{ route('route.destroy',$route->id) }}" method="POST">
+                                    @csrf
+                                    {{method_field('DELETE')}}
+                                    <button><i class="fas fa-trash-alt"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>       
+        </div>
+    </div>
+
+    <div class="col-md-12">
+        <h2>Trips</h2>
+        <div>
+            <table style="width:800px">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Trips</th>
+                        <th>Vehicle Type</th>
+                        <th>Route</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                    @foreach ($trips as $trip)
+                        <tr>
+                            <td>{{ $trip->id }}</td>
+                            <td>
+                                {{ $trip->title }}
+                            </td>
+                            <td>
+                                {{ $trip->vehicleType }}
+                            </td>
+                            <td>
+                                {{ $trip->route }}
+                            </td>
+                            <td>
+                                {{ $trip->status }}
+                            </td>
+                            <td>
+                                <button>
+                                    <a href="{{ route('trip.edit',$trip->id) }}">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                </button>
+
+                                <form action="{{ route('trip.destroy',$trip->id) }}" method="POST">
                                     @csrf
                                     {{method_field('DELETE')}}
                                     <button><i class="fas fa-trash-alt"></i></button>
