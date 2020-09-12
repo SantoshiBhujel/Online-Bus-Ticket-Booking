@@ -17,7 +17,7 @@
                 <label for="regNo" class="col-md-4 col-form-label text-md-right">{{ __('Registration No') }}</label>
 
                 <div class="col-md-6">
-                    <input id="regNo" type="text" name="regNo" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                    <input id="regNo" type="text" name="regNo" value="{{ old('regNo') }}" required autocomplete="name" autofocus>
                 </div>
             </div>
             <div class="form-group row">
@@ -35,7 +35,7 @@
                 <label for="engineNo" class="col-md-4 col-form-label text-md-right">{{ __('Engine No') }}</label>
 
                 <div class="col-md-6">
-                    <input id="engineNo" type="text" name="engineNo" value="{{ old('name') }}" required autofocus>
+                    <input id="engineNo" type="text" name="engineNo" value="{{ old('engineNo') }}" required autofocus>
                 </div>
             </div>
 
@@ -43,7 +43,7 @@
                 <label for="chassisNo" class="col-md-4 col-form-label text-md-right">{{ __('Chassis No') }}</label>
 
                 <div class="col-md-6">
-                    <input id="chassisNo" type="text" name="chassisNo" value="{{ old('name') }}" required autofocus>
+                    <input id="chassisNo" type="text" name="chassisNo" value="{{ old('chassisNo') }}" required autofocus>
                 </div>
             </div>
 
@@ -51,7 +51,7 @@
                 <label for="modelNo" class="col-md-4 col-form-label text-md-right">{{ __('Model No') }}</label>
 
                 <div class="col-md-6">
-                    <input id="modelNo" type="text" name="modelNo" value="{{ old('name') }}" required autofocus>
+                    <input id="modelNo" type="text" name="modelNo" value="{{ old('modelNo') }}" required autofocus>
                 </div>
             </div>
 
@@ -59,7 +59,7 @@
                 <label for="ownerName" class="col-md-4 col-form-label text-md-right">{{ __('Owner Name') }}</label>
 
                 <div class="col-md-6">
-                    <input id="ownerName" type="text" name="ownerName" value="{{ old('name') }}" required autofocus>
+                    <input id="ownerName" type="text" name="ownerName" value="{{ old('ownerName') }}" required autofocus>
                 </div>
             </div>
 
@@ -67,7 +67,7 @@
                 <label for="ownerNumber" class="col-md-4 col-form-label text-md-right">{{ __('Owner Number') }}</label>
 
                 <div class="col-md-6">
-                    <input id="ownerNumber" type="text" name="ownerNumber" value="{{ old('name') }}" required autofocus>
+                    <input id="ownerNumber" type="text" name="ownerNumber" value="{{ old('ownerNumber') }}" required autofocus>
                 </div>
             </div>
 
@@ -76,12 +76,12 @@
                 <label for="brandName" class="col-md-4 col-form-label text-md-right">{{ __('Brand Name') }}</label>
 
                 <div class="col-md-6">
-                    <input id="brandName" type="text" name="brandName" value="{{ old('name') }}" required autofocus>
+                    <input id="brandName" type="text" name="brandName" value="{{ old('brandName') }}" required autofocus>
                 </div>
             </div>
 
             <div class="form-group row">
-                <label for="totalSeats" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>
+                <label for="status" class="col-md-4 col-form-label text-md-right">{{ __('Status') }}</label>
                 <div class="col-md-6">
                     <input type="radio" id="status" name="status" value="Active" checked>
                     <label for="status" >Active</label><br>

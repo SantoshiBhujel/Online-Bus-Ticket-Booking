@@ -17,7 +17,7 @@
                     <label for="position" class="col-md-4 col-form-label text-md-right">{{ __('Position') }}</label>
 
                     <div class="col-md-6">
-                        <input id="position" type="text" name="position" value="{{ old('name') }}" required autocomplete="position" autofocus>
+                        <input id="position" type="text" name="position" value="{{ old('position') }}" required autocomplete="position" autofocus>
                     </div>
                 </div>
 
@@ -25,7 +25,7 @@
                     <label for="details" class="col-md-4 col-form-label text-md-right">{{ __('Details') }}</label>
 
                     <div class="col-md-6">
-                        <input id="details" type="text" name="details" value="{{ old('name') }}" required autocomplete="details" autofocus>
+                        <input id="details" type="text" name="details" value="{{ old('details') }}" required autocomplete="details" autofocus>
                     </div>
                 </div>
 

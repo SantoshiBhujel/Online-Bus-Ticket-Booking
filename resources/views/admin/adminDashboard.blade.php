@@ -96,7 +96,8 @@
                             Trip Management
                         </a>
                         <ul class="collapse list-unstyled" id="tripManagementSubmenu">
-                            <li><a href="#">Destination Add</a></li>
+                            <li><a href="{{ route('destination.index') }}"> Destination Details</a></li>
+                            <li><a href="{{ route('destination.create') }}">Destination Add</a></li>
                             <li><a href="#">Add Route </a></li>
                             <li><a href="#">Create Trip</a></li>
                         </ul>
