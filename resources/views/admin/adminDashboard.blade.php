@@ -86,8 +86,8 @@
                             Offers
                         </a>
                         <ul class="collapse list-unstyled" id="offerSubmenu">
-                            <li><a href="#">Offers Details</a></li>
-                            <li><a href="#">Add Offers</a></li>
+                            <li><a href="{{ route('offer.index') }}">Offers Details</a></li>
+                            <li><a href="{{ route('offer.create') }}">Add Offers</a></li>
                         </ul>
                     </li>
                     <li class=@yield('tripClass')>
