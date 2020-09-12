@@ -2,11 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Route;
 use App\Destination;
 use Illuminate\Http\Request;
 
 class DestinationController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +26,8 @@ class DestinationController extends Controller
     public function index()
     {
         $destinations= Destination::all();
-        return view('admin.destination.details',compact('destinations'));
+        $routes= Route::all();
+        return view('admin.destination.details',compact('destinations','routes'));
     }
 
     /**

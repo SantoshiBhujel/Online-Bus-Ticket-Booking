@@ -57,6 +57,10 @@ Route::resource('admin/destination', 'DestinationController');
 Route::get('admin/destination/{id}/previewEdit','DestinationController@previewEdit')->name('destination.previewEdit');
 Route::post('admin/destination/{id}/previewUpdate','DestinationController@previewUpdate')->name('destination.previewUpdate');
 
+//  -----------------
+//  ROUTE FOR ROUTE 
+//  ------------------
+Route::resource('admin/route', 'RouteController');
 
 Route::get('admin/offers/details', 'AdminController@offersDetails')->name('offersDetails')->middleware('admin');
 Route::get('admin/offers/create', 'AdminController@offersCreate')->name('offersCreate')->middleware('admin');
