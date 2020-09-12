@@ -75,7 +75,8 @@
                             Employee
                         </a>
                         <ul class="collapse list-unstyled" id="employeeSubmenu">
-                            <li><a href="{{ route('employeeDetails') }}">Employee Details</a></li>
+                            <li><a href="{{ route('employeeTypes.index') }}">Employee Details</a></li>
+                            <li><a href="{{ route('employeeTypes.create') }}">Add Employee Type</a></li>
                             <li><a href="{{ route('employeeCreate') }}">Add Employee</a></li>
                         </ul>
                     </li>

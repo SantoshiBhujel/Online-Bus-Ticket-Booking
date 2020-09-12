@@ -44,9 +44,14 @@ Route::get('admin/facilities/{id}','FacilitiesController@vehicleFacilitiesCreate
 Route::resource('admin/vehicle', 'VehicleController');
 
 
+//  --------------------------
+//  ROUTE FOR EMPLOYEE TYPES
+//  --------------------------
+Route::resource('admin/employeeTypes', 'EmployeeTypeController');
+
+
 Route::get('admin/offers/details', 'AdminController@offersDetails')->name('offersDetails')->middleware('admin');
 Route::get('admin/offers/create', 'AdminController@offersCreate')->name('offersCreate')->middleware('admin');
 
 
-Route::get('admin/employee/details', 'AdminController@employeeDetails')->name('employeeDetails')->middleware('admin');
 Route::get('admin/employee/create', 'AdminController@employeeCreate')->name('employeeCreate')->middleware('admin');
