@@ -20,6 +20,7 @@ class CreateFacilitiesTable extends Migration
             $table->string('services');
             $table->foreign('vehicleTypes_id')->references('id')->on('vehicle_types')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -28,6 +28,7 @@ class CreateBookingsTable extends Migration
             $table->string('dropLocation');
             $table->string('paymentStatus')->default('unpaid');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
