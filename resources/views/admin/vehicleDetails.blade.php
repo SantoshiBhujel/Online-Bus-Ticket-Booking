@@ -78,7 +78,7 @@
     </div>
 
     <div class="col-md-12">
-        <h2>Vehicle Types</h2>
+        <h2>Vehicle Details</h2>
         <div>
             <table style="width:800px">
                 <thead>

@@ -75,7 +75,7 @@
                     <label for="offerCode" class="col-md-4 col-form-label text-md-right">{{ __('Offer Code') }}</label>
 
                     <div class="col-md-6">
-                        <select name="offerCode" required>
+                        <select name="offerCode">
                             @foreach($offers as $offer)
                                 <option value="{{$offer->offerCode}}">
                                 {{$offer->offerCode}}

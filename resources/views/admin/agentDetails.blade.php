@@ -31,7 +31,7 @@
                                 <form action="{{ route('agent.destroy',$agent->id) }}" method="POST">
                                     @csrf
                                     {{method_field('DELETE')}}
-                                    <button> {{ __('Delete') }}</button>
+                                    <button><i class="fas fa-trash-alt"></i></button>
                                 </form>
                             </td>
                         </tr>

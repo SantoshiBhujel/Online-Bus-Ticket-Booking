@@ -6,6 +6,7 @@ use App\Offer;
 use App\Route;
 use App\Booking;
 use App\VehicleType;
+use App\Events\BookingEvent;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -51,27 +52,37 @@ class BookingController extends Controller
             'adultPassengers'   => 'required | integer',
             'childPassengers'   => 'nullable | integer',
             'specialPassengers' => 'nullable | integer',
-            'offerCode'         => 'required | string',
+            'offerCode'         => 'nullable | string',
             'price'             => 'required | integer',
             'Pemail'            => 'required | email',
             'pickupLocation'    => 'required | string',
             'dropLocation'      => 'required | string',
         ]);
 
-        $booking= new Booking();
+        if($request->has('offerCode'))
+        {
+            $offerCode= $request->offerCode;
+        }
+        else
+        {
+            $offerCode= '';
+        }
         
-        $booking->date = $request->date;
-        $booking->vehicleType = $request->vehicleType;
-        $booking->route = $request->route;
-        $booking->adultPassengers = $request->adultPassengers;
-        $booking->childPassengers = $request->childPassengers;
-        $booking->specialPassengers = $request->specialPassengers;
-        $booking->offerCode = $request->offerCode;
-        $booking->price = $request->price;
-        $booking->Pemail = $request->Pemail;
-        $booking->pickupLocation= $request->pickupLocation;
-        $booking->dropLocation= $request->dropLocation;
-        $booking->save();
+        $booking= Booking::create([
+            'date' => $request->date,
+            'vehicleType' => $request->vehicleType,
+            'route' => $request->route,
+            'adultPassengers' => $request->adultPassengers,
+            'childPassengers' => $request->childPassengers,
+            'specialPassengers' => $request->specialPassengers,
+            'offerCode' => $offerCode,
+            'price' => $request->price,
+            'Pemail' => $request->Pemail,
+            'pickupLocation'=> $request->pickupLocation,
+            'dropLocation'=> $request->dropLocation
+        ]);
+
+        event(new BookingEvent($booking));
 
         return \redirect()->route('booking.index')->with('success','Successfully Booked');
     }
@@ -119,7 +130,7 @@ class BookingController extends Controller
             'adultPassengers'   => 'required | integer',
             'childPassengers'   => 'nullable | integer',
             'specialPassengers' => 'nullable | integer',
-            'offerCode'         => 'required | string',
+            'offerCode'         => 'nullable | string',
             'price'             => 'required | integer',
             'Pemail'            => 'required | email',
             'pickupLocation'    => 'required | string',
