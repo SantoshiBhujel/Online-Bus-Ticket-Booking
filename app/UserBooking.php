@@ -5,16 +5,18 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Booking extends Model
+class UserBooking extends Model
 {
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
+    
+    public $table ='bookings';
 
     protected $fillable =[
         'date',
-        'vehicleType', 
-        'vehicleNo',
+        'vehicleType',
+        'vehicleNo', 
         'route',
         'adultPassengers',
         'childPassengers',
@@ -27,4 +29,5 @@ class Booking extends Model
         'dropLocation',
         'paymentStatus'
     ];
+
 }

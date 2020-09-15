@@ -82,4 +82,14 @@ Route::resource('admin/offer', 'OfferController');
 //  ------------------
 Route::resource('admin/booking', 'BookingController');
 
-Route::get('admin/employee/create', 'AdminController@employeeCreate')->name('employeeCreate')->middleware('admin');
+//  -----------------------------------------------
+//  ROUTE FOR GETTING VEHICLE OF GIVEN VEHICLE TYPE
+//  -----------------------------------------------
+// Route::get('/vehicleTypes','HomeController@getVehicleTypes');
+Route::get('/vehicleType/{vehicleType}/vehicles','HomeController@getVehicles')->name('formVehicles');
+
+//  --------------------------
+//  ROUTE FOR BOOKING BY USER
+//  --------------------------
+Route::resource('user/userBooking', 'UserBookingController');
+Route::post('admin/employee/create', 'AdminController@employeeCreate')->name('employeeCreate')->middleware('admin');

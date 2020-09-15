@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\VehicleType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,12 +31,22 @@ class HomeController extends Controller
         }
         else
         {
-            return view('home');
+            return view('users.home');
         }
     }
 
     public function admin()
     {
         return view('admin.adminDashboard');
+    }
+
+    public function getVehicles($vehicleType)
+    {
+        $id= VehicleType::where('name',$vehicleType)->pluck('id')->first();
+        $vehicles=  VehicleType::find($id)->vehicles;
+        //print_r($vehicles);
+        return response()->json([
+            'vehicles' => $vehicles
+        ]);
     }
 }

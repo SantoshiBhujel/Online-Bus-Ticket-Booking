@@ -1,17 +1,16 @@
-@extends('admin.adminDashboard')
+@extends('users.home')
 @section('bookingClass')
     "active"
 @endsection
 
 
 @section('body')
-
 <div class="container">
     <div class="">
         <div class="card-header">{{ __('Add Booking') }}</div>
 
         <div class="card-body">
-            <form method="POST" action="{{ route('booking.store') }}">
+            <form method="POST" action="{{ route('userBooking.store') }}">
                 @csrf
 
                 <div class="form-group row">
@@ -30,6 +29,7 @@
                             @foreach($vehicleTypes as $vehicleType)
                                 <option value="{{$vehicleType->name}}">
                                 {{$vehicleType->name}}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -51,6 +51,7 @@
                             @foreach($routes as $route)
                                 <option value="{{$route->name}}">
                                 {{$route->name}}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -86,7 +87,6 @@
 
                     <div class="col-md-6">
                         <select name="offerCode">
-                            <option value="">Select Offer Code </option>
                             @foreach($offers as $offer)
                                 <option value="{{$offer->offerCode}}">
                                 {{$offer->offerCode}}</option>
@@ -112,10 +112,10 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="Pemail" class="col-md-4 col-form-label text-md-right">{{ __("Passenger's Email") }}</label>
+                    <label for="Pemail" class="col-md-4 col-form-label text-md-right">{{ __('Passenger Email') }}</label>
 
                     <div class="col-md-6">
-                        <input id="" type="email" name="Pemail" value="{{ old('Pemail') }}" required  autofocus>
+                        <input id="" type="email" name="Pemail" value="{{ auth()->user()->email }}" required  autofocus>
                     </div>
                 </div>
                 <div class="form-group row">

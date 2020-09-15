@@ -1,4 +1,4 @@
-@extends('admin.adminDashboard')
+@extends('users.home')
 @section('bookingClass')
     "active"
 @endsection
@@ -15,14 +15,13 @@
                         <th>ID</th>
                         <th>Date</th>
                         <th>Vehicle Type</th>
-                        <th>Vehicle Number</th>
+                        <th>Vehicle No</th>
                         <th>Route Name</th>
                         <th>Adult Passengers</th>
                         <th>Child Passengers </th>
                         <th>Special Passenger</th>
                         <th>Offer Code</th>
                         <th>Price</th>
-                        <th>Passenger's Name</th>
                         <th>Passenger Email</th>
                         <th>Pickup Location</th>
                         <th>Drop Location</th>
@@ -63,9 +62,6 @@
                                 {{ $booking->price}}
                             </td>
                             <td>
-                                {{ $booking->Pname }}
-                            </td>
-                            <td>
                                 {{ $booking->Pemail}}
                             </td>
                             <td>
@@ -79,19 +75,13 @@
                             </td>
 
                             <td>
-                                @if ($booking->paymentStatus=='paid')
-                                    <button>
-                                        <a href=""><i class="fas fa-undo"></i>
-                                        </a>
-                                    </button>
-                                @endif
                                 <button>
-                                    <a href="{{ route('booking.edit',$booking->id) }}">
+                                    <a href="{{ route('userBooking.edit',$booking->id) }}">
                                         <i class="fas fa-pencil-alt"></i>
                                     </a>
                                 </button>
 
-                                <form action="{{ route('booking.destroy',$booking->id) }}" method="POST">
+                                <form action="{{ route('userBooking.destroy',$booking->id) }}" method="POST">
                                     @csrf
                                     {{method_field('DELETE')}}
                                     <button><i class="fas fa-trash-alt"></i></button>

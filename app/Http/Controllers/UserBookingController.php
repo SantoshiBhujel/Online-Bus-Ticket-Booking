@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use App\Offer;
 use App\Route;
 use App\Booking;
+use App\UserBooking;
 use App\VehicleType;
 use App\Events\BookingEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class BookingController extends Controller
+class UserBookingController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -18,9 +20,8 @@ class BookingController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('admin');
+        $this->middleware('auth');
     }
-    
     /**
      * Display a listing of the resource.
      *
@@ -28,8 +29,9 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings= Booking::all();
-        return view('admin.booking.bookingDetails',compact('bookings'));
+        $email= Auth::user()->email;
+        $bookings= UserBooking::where('Pemail',$email)->get();
+        return view('users.userBookingDetails',compact('bookings'));
     }
 
     /**
@@ -43,8 +45,7 @@ class BookingController extends Controller
         $routes= Route::all();
         $offers= Offer::all();
         
-        return view('admin.booking.bookingCreate',compact('vehicleTypes','routes','offers'));
-        
+        return view('users.userBookingCreate',compact('vehicleTypes','routes','offers'));
     }
 
     /**
@@ -70,35 +71,38 @@ class BookingController extends Controller
             'pickupLocation'    => 'required | string',
             'dropLocation'      => 'required | string',
         ]);
-
-        $booking= Booking::create([
+        
+        $userBooking= UserBooking::create([
             'date' => $request->date,
             'vehicleType' => $request->vehicleType,
-            'vehicleNo' =>$request->vehicleNo,
+            'vehicleNo' => $request->vehicleNo,
             'route' => $request->route,
             'adultPassengers' => $request->adultPassengers,
             'childPassengers' => $request->childPassengers,
             'specialPassengers' => $request->specialPassengers,
             'offerCode' => $request->offerCode,
             'price' => $request->price,
-            'Pname' => $request->Pname,
+            'Pname' =>$request->Pname,
             'Pemail' => $request->Pemail,
             'pickupLocation'=> $request->pickupLocation,
             'dropLocation'=> $request->dropLocation
         ]);
-        
+
+        $booking= Booking::findOrFail($userBooking->id);
+
+
         event(new BookingEvent($booking));
 
-        return \redirect()->route('booking.index')->with('success','Successfully Booked');
+        return \redirect()->route('userBooking.index')->with('success','Successfully Booked');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Booking  $booking
+     * @param  \App\UserBooking  $userBooking
      * @return \Illuminate\Http\Response
      */
-    public function show(Booking $booking)
+    public function show(UserBooking $userBooking)
     {
         //
     }
@@ -106,33 +110,32 @@ class BookingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Booking  $booking
+     * @param  \App\UserBooking  $userBooking
      * @return \Illuminate\Http\Response
      */
-    public function edit(Booking $booking)
+    public function edit(UserBooking $userBooking)
     {
         $vehicleTypes=VehicleType::all();
         $routes= Route::all();
         $offers= Offer::all();
-        $booking= Booking::findOrFail($booking->id);
-        return view('admin.booking.bookingEdit',compact('booking','vehicleTypes','routes','offers'));
-        
+        $userBooking= UserBooking::findOrFail($userBooking->id);
+        return view('users.userBookingEdit',compact('userBooking','vehicleTypes','routes','offers'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Booking  $booking
+     * @param  \App\UserBooking  $userBooking
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Booking $booking)
+    public function update(Request $request, UserBooking $userBooking)
     {
         $this->validate($request,[
-            'date'              => 'required | date | after:today',
-            'vehicleType'       => 'required | string',
-            'vehicleNo'         => 'nullable | string',
-            'route'             => 'required | string',
+            'date'              => 'sometimes | date | after:today',
+            'vehicleType'       => 'sometimes | string',
+            'vehicleNo'         => 'sometimes | string',
+            'route'             => 'sometimes | string',
             'adultPassengers'   => 'required | integer',
             'childPassengers'   => 'nullable | integer',
             'specialPassengers' => 'nullable | integer',
@@ -143,35 +146,37 @@ class BookingController extends Controller
             'pickupLocation'    => 'required | string',
             'dropLocation'      => 'required | string',
         ]);
+        
+        $userBooking= UserBooking::find($userBooking->id);
+        $userBooking->update([
+            'date' => $request->date,
+            'vehicleType' => $request->has('vehicleType') ? $request->vehicleType : $userBooking->vehicleType,
+            'vehicleNo' =>$request->has('vehicleNo') ? $request->vehicleNo : $userBooking->vehicleNo,
+            'route' => $request->has('route') ? $request->route :$userBooking->route,
+            'adultPassengers' => $request->adultPassengers,
+            'childPassengers' => $request->childPassengers,
+            'specialPassengers' => $request->specialPassengers,
+            'offerCode' => $request->offerCode,
+            'price' => $request->price,
+            'Pname' =>$request->Pname,
+            'Pemail' => $request->Pemail,
+            'pickupLocation'=> $request->pickupLocation,
+            'dropLocation'=> $request->dropLocation
+        ]);
 
-        $booking= Booking::findOrFail($booking->id);
-        $booking->date = $request->date;
-        $booking->vehicleType =$request->vehicleType;
-        $booking->vehicleNo=$request->has('vehicleNo') ? $request->vehicleNo : $booking->vehicleNo;
-        $booking->route = $request->has('route') ? $request->route : $booking->route;
-        $booking->adultPassengers = $request->adultPassengers;
-        $booking->childPassengers = $request->childPassengers;
-        $booking->specialPassengers = $request->specialPassengers;
-        $booking->offerCode = $request->offerCode;
-        $booking->price = $request->price;
-        $booking->Pemail = $request->Pemail;
-        $booking->pickupLocation= $request->pickupLocation;
-        $booking->dropLocation= $request->dropLocation;
-        $booking->save();
-
-        return \redirect()->route('booking.index')->with('success','Booking Edited');
+        return \redirect()->route('userBooking.index')->with('success','Booking Edited');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Booking  $booking
+     * @param  \App\UserBooking  $userBooking
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Booking $booking)
+    public function destroy(UserBooking $userBooking)
     {
-        $booking= Booking::findOrFail($booking->id);
+        $booking= UserBooking::findOrFail($userBooking->id);
         $booking->delete();
-        return \redirect()->route('booking.index')->with('success','Booking Deleted');
+        return \redirect()->route('userBooking.index')->with('success','Booking Deleted');
     }
 }

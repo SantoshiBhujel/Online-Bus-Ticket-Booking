@@ -13,4 +13,9 @@ class Vehicle extends Model
     protected $fillable =[
         'regNo', 'vehicleType', 'engineNo', 'chassisNo', 'modelNo', 'ownerName', 'ownerNumber','brandName', 'status'
     ];
+
+    public function vehicleType()
+    {
+        return $this->belongsTo(VehicleType::class, 'vehicleType_id', 'id');
+    }
 }

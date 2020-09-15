@@ -21,11 +21,11 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="vehicleType" class="col-md-4 col-form-label text-md-right">{{ __('Vehicle Type') }}</label>
+                <label for="vehicleType_id" class="col-md-4 col-form-label text-md-right">{{ __('Vehicle Type') }}</label>
                 <div class="col-md-6">
-                    <select name="vehicleType" required>
+                    <select name="vehicleType_id" required>
                         @foreach($vehicleTypes as $vehicleType)
-                            <option value="{{$vehicleType->name}}">
+                            <option value="{{$vehicleType->id}}">
                             {{$vehicleType->name}}
                         @endforeach
                     </select>

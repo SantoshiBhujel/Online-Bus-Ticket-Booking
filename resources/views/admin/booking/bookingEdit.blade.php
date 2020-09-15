@@ -18,18 +18,30 @@
                     <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Date') }}</label>
 
                     <div class="col-md-6">
-                        <input id="" type="date" name="date" value=" {{ $booking->date }}"required  autofocus>
+                        <input id="" type="date" name="date" value="{{ $booking->date }}"  autofocus>
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="vehicleType" class="col-md-4 col-form-label text-md-right">{{ __('Vehicle Type') }}</label>
                     <div class="col-md-6">
-                        <select name="vehicleType" required>
+                        <select id="vehicleType" name="vehicleType" >
+                            <option value=""> Select Vehicle Type
                             @foreach($vehicleTypes as $vehicleType)
-                                <option value="{{$vehicleType->name}}">
+                                <option value="{{$vehicleType->name}}"  @if ($vehicleType->name == $booking->vehicleType)
+                                    selected="selected"
+                                    @endif>
                                 {{$vehicleType->name}}
+                               
                             @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="vehicle" class="col-md-4 col-form-label text-md-right">{{ __('Vehicles Available') }}</label>
+                    <div class="col-md-6">
+                        <select id="vehicle" name="vehicleNo">
                         </select>
                     </div>
                 </div>
@@ -38,7 +50,7 @@
                     <label for="route" class="col-md-4 col-form-label text-md-right">{{ __('Route Name') }}</label>
 
                     <div class="col-md-6">
-                        <select name="route" required>
+                        <select name="route" >
                             @foreach($routes as $route)
                                 <option value="{{$route->name}}">
                                 {{$route->name}}
@@ -76,7 +88,7 @@
                     <label for="offerCode" class="col-md-4 col-form-label text-md-right">{{ __('Offer Code') }}</label>
 
                     <div class="col-md-6">
-                        <select name="offerCode" required>
+                        <select name="offerCode">
                             @foreach($offers as $offer)
                                 <option value="{{$offer->offerCode}}">
                                 {{$offer->offerCode}}
@@ -90,6 +102,14 @@
 
                     <div class="col-md-6">
                         <input id="" type="text" name="price" value="{{ $booking->price }}" required  autofocus>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="Pname" class="col-md-4 col-form-label text-md-right">{{ __("Passenger's Name") }}</label>
+
+                    <div class="col-md-6">
+                        <input id="" type="text" name="Pname" value="{{  $booking->Pname }}" required  autofocus>
                     </div>
                 </div>
 

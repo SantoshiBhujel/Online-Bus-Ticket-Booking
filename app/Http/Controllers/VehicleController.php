@@ -48,9 +48,11 @@ class VehicleController extends Controller
      */
     public function store(VehicleRequest $request)
     {
+        $vehicleType= VehicleType::findOrFail($request->vehicleType_id);
         $vehicle= new Vehicle();
         $vehicle->regNo = $request->regNo;
-        $vehicle->vehicleType = $request->vehicleType;
+        $vehicle->vehicleType_id = $request->vehicleType_id;
+        $vehicle->vehicleType = $vehicleType->name;
         $vehicle->engineNo = $request->engineNo;
         $vehicle->chassisNo = $request->chassisNo;
         $vehicle->modelNo = $request->modelNo;

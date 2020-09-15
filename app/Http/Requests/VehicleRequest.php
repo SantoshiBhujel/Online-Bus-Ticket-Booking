@@ -25,7 +25,7 @@ class VehicleRequest extends FormRequest
     {
         return [
             'regNo' => 'required | string',
-            'vehicleType'=>'required | string',
+            'vehicleType_id'=>'required | integer',
             'engineNo'=>'required | string',
             'chassisNo'=>'required | string',
             'modelNo'=>'required | string',

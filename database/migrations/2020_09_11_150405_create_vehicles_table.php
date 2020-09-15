@@ -17,6 +17,7 @@ class CreateVehiclesTable extends Migration
             $table->id();
             $table->string('regNo');
             $table->string('vehicleType');
+            $table->unsignedBigInteger('vehicleType_id');
             $table->string('engineNo');
             $table->string('chassisNo');
             $table->string('modelNo');
