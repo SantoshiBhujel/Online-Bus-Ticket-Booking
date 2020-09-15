@@ -9,6 +9,8 @@ use App\Booking;
 use App\VehicleType;
 use App\Events\BookingEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\BookingCancellationEmail;
 use App\Notifications\BookingNotification;
 
 class BookingController extends Controller
@@ -177,5 +179,19 @@ class BookingController extends Controller
         $booking= Booking::findOrFail($booking->id);
         $booking->delete();
         return \redirect()->route('booking.index')->with('success','Booking Deleted');
+    }
+
+
+    public function cancel()
+    {
+        return view('admin.booking.bookingCancel');
+    }
+
+    public function cancelBooking(Request $request)
+    {
+        $user= Booking::where('date',$request->date)->pluck('Pemail')->toArray();
+        //dd($user);
+        Mail::to($user)->queue(new BookingCancellationEmail($request->cause));
+        return \redirect()->route('booking.index')->with('success','Booking Cancelled');
     }
 }

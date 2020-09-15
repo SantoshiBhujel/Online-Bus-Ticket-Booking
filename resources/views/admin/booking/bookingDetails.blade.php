@@ -7,6 +7,7 @@
 @section('body')
 <div class="container">
     <div class="col-md-12">
+        <a href="{{ route('bookingCancel') }}"><button class="btn btn-dark">Cancel Booking</button></a>
         <h2>Booking Details</h2>
         <div>
             <table>

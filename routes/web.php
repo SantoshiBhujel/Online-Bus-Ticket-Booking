@@ -115,5 +115,11 @@ Route::get('/booking/{id}/refund','HomeController@getPassengerName');
 //  --------------------------------
 Route::post('/notification/get', 'HomeController@getNotifications');
 
+//  --------------------------
+//  ROUTE FOR BOOKING CANCEL
+//  --------------------------
+Route::get('/cancel/booking','BookingController@cancel')->name('bookingCancel');
+Route::post('/cancel/booking','BookingController@cancelBooking')->name('booking.Cancel');
+
 Route::post('admin/employee/create', 'AdminController@employeeCreate')->name('employeeCreate')->middleware('admin');
 
