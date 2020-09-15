@@ -5,23 +5,28 @@
 @endsection
 
 @section('body')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
-
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        {{ __('This is Dashboard') }}
+    <div class="navbar-header">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-primary">
+                Notifications<sup><span class="caret">{{ count($notifications) }}</span></sup>
+            </button>
+        </a>
+    
+        <ul class="dropdown-menu">
+            @if (count($notifications)>0)
+                @foreach ($notifications as $notification )
+                    <div href="">
+                        <h5>{{ $notification->data['by'] }}</h5>
+                        booked for route
+                        <h6>{{ $notification->data['route'] }}</h6> 
+                        on date
+                        <small>{{ $notification->data['date'] }}</small>
                     </div>
-                </div>
-            </div>
-        </div>
+                    <hr>
+                @endforeach
+            @else
+                <h4>All notifications caught up</h4>
+            @endif
+        </ul>
     </div>
 @endsection

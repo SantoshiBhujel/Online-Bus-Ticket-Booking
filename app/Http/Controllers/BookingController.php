@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Offer;
 use App\Route;
 use App\Booking;
 use App\VehicleType;
 use App\Events\BookingEvent;
 use Illuminate\Http\Request;
+use App\Notifications\BookingNotification;
 
 class BookingController extends Controller
 {
@@ -55,6 +57,7 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
+        $user= User::findOrFail(1);
         $this->validate($request,[
             'date'              => 'required | date | after:today',
             'vehicleType'       => 'required | string',
@@ -88,7 +91,8 @@ class BookingController extends Controller
         ]);
         
         event(new BookingEvent($booking));
-
+        $user= User::findOrFail(1);
+        $user->notify(new BookingNotification($booking));
         return \redirect()->route('booking.index')->with('success','Successfully Booked');
     }
 

@@ -110,6 +110,10 @@ Route::resource('admin/refund', 'RefundController');
 Route::get('/booking/{id}/refund','HomeController@getPassengerName');
 
 
+//  --------------------------------
+//  ROUTE FOR GETTING NOTIFICATIONS
+//  --------------------------------
+Route::post('/notification/get', 'HomeController@getNotifications');
 
 Route::post('admin/employee/create', 'AdminController@employeeCreate')->name('employeeCreate')->middleware('admin');
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -18,7 +19,8 @@ class AdminController extends Controller
 
     public function adminDashboard()
     {
-        return view('admin.dashboard');
+        $notifications = Auth::user()->unreadNotifications;  
+        return view('admin.dashboard',compact('notifications'));
     }
 
     public function employeeDetails()

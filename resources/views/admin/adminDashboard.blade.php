@@ -38,13 +38,13 @@
 
                 <ul class="list-unstyled components">
                     <p>{{ Auth::user()->first_name }}</p>
-                    <li class=@yield('adminDashboardclass')>
-                        <a href="{{ route('adminDashboard') }}" data-toggle="collapse" aria-expanded="false">
+                    <li class="@yield('adminDashboardclass')">
+                        <a href="{{ route('adminDashboard') }}">
                             <i class="glyphicon glyphicon-home"></i>
                             Dashboard
                         </a>
                     </li>
-
+       
                     <li class=@yield('agentClass')>
                         <a href="#agentSubmenu" data-toggle="collapse" aria-expanded="false">
                             <i class="glyphicon glyphicon-duplicate"></i>
@@ -170,8 +170,7 @@
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf 
                                 <button class="btn btn-primary">Logout</button>
-                            </form>
-                                
+                            </form> 
                         </div>
                        
                     </div>
@@ -179,8 +178,7 @@
                 @include('includes.alert')
                 @yield('body')
             </div>
-        </div>
-                
+        </div>        
     </div>
 
     

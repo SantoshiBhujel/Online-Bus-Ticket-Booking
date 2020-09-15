@@ -9,7 +9,7 @@
                 booked for
                 <h6>{{ notification.data.route }}</h6> 
                 on
-                <small>{{ notification }}</small>
+                <small>{{ notification.data.date }}</small>
             </div>
             <hr>
         </ul>

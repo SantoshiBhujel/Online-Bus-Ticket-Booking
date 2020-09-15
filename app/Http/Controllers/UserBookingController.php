@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use App\Offer;
 use App\Route;
 use App\Booking;
@@ -10,6 +11,7 @@ use App\VehicleType;
 use App\Events\BookingEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\BookingNotification;
 
 class UserBookingController extends Controller
 {
@@ -89,10 +91,9 @@ class UserBookingController extends Controller
         ]);
 
         $booking= Booking::findOrFail($userBooking->id);
-
-
         event(new BookingEvent($booking));
-
+        $user= User::findOrFail(1);
+        $user->notify(new BookingNotification($booking));
         return \redirect()->route('userBooking.index')->with('success','Successfully Booked');
     }
 

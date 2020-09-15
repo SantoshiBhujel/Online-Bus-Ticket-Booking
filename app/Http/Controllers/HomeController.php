@@ -38,7 +38,8 @@ class HomeController extends Controller
 
     public function admin()
     {
-        return view('admin.adminDashboard');
+        $notifications = Auth::user()->unreadNotifications;    
+        return view('admin.adminDashboard',compact('notifications'));
     }
 
     public function getVehicles($vehicleType)
@@ -57,5 +58,11 @@ class HomeController extends Controller
         return response()->json([
             'name' => $name
         ]);
+    }
+
+    public function getNotifications()
+    {
+        $notification = Auth::user()->unreadNotifications;    
+        return  $notification;
     }
 }
