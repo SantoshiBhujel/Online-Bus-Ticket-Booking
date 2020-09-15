@@ -128,7 +128,7 @@
                             Refund
                         </a>
                         <ul class="collapse list-unstyled" id="refundSubmenu">
-                            <li><a href="#">Add Refund</a></li>
+                            <li><a href="{{ route('refund.index') }}">Add Refund</a></li>
                         </ul>
                     </li>
 
@@ -178,6 +178,8 @@
                 </nav>
                 @include('includes.alert')
                 @yield('body')
+            </div>
+        </div>
                 
     </div>
 

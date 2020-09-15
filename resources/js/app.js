@@ -29,4 +29,14 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    data:{
+        notifications:''
+    },
+
+    created() {
+        axios.post('/notification/get').then(response=>{
+            this.notifications= response.data
+            console.log(response.data);
+        });
+    },
 });

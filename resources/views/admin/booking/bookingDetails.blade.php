@@ -81,7 +81,7 @@
                             <td>
                                 @if ($booking->paymentStatus=='paid')
                                     <button>
-                                        <a href=""><i class="fas fa-undo"></i>
+                                        <a href="{{ route('refund.edit',$booking->id) }}"><i class="fas fa-undo"></i>
                                         </a>
                                     </button>
                                 @endif

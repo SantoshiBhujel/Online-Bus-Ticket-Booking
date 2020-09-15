@@ -18,4 +18,20 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#bookingId').change(function(e){
+        // var value= $(this).children("option:selected").val();
+        var value = e.target.value;
+        console.log(value);
+        $.ajax({
+            type:"get",    
+            url:"/booking/"+value+"/refund",
+            success:function (data) {
+                $('#PasName').val(data.name);
+                console.log('success');
+            }
+        });
+    });
 });
+
+

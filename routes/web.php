@@ -27,9 +27,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('admin', 'HomeController@admin')->name('admin')->middleware('admin');
 Route::get('admin/dashboard', 'AdminController@adminDashboard')->name('adminDashboard')->middleware('admin');
 
+//  -----------------
+//  ROUTE FOR AGENT
+//  -----------------
 Route::resource('admin/agent', 'AgentController');
 
-
+//  -----------------------
+//  ROUTE FOR VEHICLE TYPE
+//  -----------------------
 Route::resource('admin/vehicleType', 'VehicleTypeController');
 
 //  -----------------------
@@ -86,10 +91,25 @@ Route::resource('admin/booking', 'BookingController');
 //  ROUTE FOR GETTING VEHICLE OF GIVEN VEHICLE TYPE
 //  -----------------------------------------------
 // Route::get('/vehicleTypes','HomeController@getVehicleTypes');
-Route::get('/vehicleType/{vehicleType}/vehicles','HomeController@getVehicles')->name('formVehicles');
+Route::get('/vehicleType/{vehicleType}/vehicles','HomeController@getVehicles');
 
 //  --------------------------
 //  ROUTE FOR BOOKING BY USER
 //  --------------------------
 Route::resource('user/userBooking', 'UserBookingController');
+
+//  ------------------
+//  ROUTE FOR REFUND
+//  ------------------
+Route::resource('admin/refund', 'RefundController');
+
+
+//  ---------------------------------------------------
+//  ROUTE FOR GETTING PASSENGER'S NAME OF BOOKING ID-X
+//  ---------------------------------------------------
+Route::get('/booking/{id}/refund','HomeController@getPassengerName');
+
+
+
 Route::post('admin/employee/create', 'AdminController@employeeCreate')->name('employeeCreate')->middleware('admin');
+

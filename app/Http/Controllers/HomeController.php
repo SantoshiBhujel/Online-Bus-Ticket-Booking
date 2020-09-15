@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Booking;
 use App\VehicleType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,14 @@ class HomeController extends Controller
         //print_r($vehicles);
         return response()->json([
             'vehicles' => $vehicles
+        ]);
+    }
+
+    public function getPassengerName($id)
+    {
+        $name = Booking::find($id)->Pname;
+        return response()->json([
+            'name' => $name
         ]);
     }
 }

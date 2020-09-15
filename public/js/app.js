@@ -49741,7 +49741,18 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: {
+    notifications: ''
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.post('/notification/get').then(function (response) {
+      _this.notifications = response.data;
+      console.log(response.data);
+    });
+  }
 });
 
 /***/ }),
