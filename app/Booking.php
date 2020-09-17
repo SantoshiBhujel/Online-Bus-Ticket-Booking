@@ -15,6 +15,7 @@ class Booking extends Model
         'date',
         'vehicleType', 
         'vehicleNo',
+        'seats',
         'route',
         'adultPassengers',
         'childPassengers',
@@ -27,4 +28,5 @@ class Booking extends Model
         'dropLocation',
         'paymentStatus'
     ];
+
 }

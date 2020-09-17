@@ -38,7 +38,7 @@
 
                 <ul class="list-unstyled components">
                     <p>{{ Auth::user()->first_name }}</p>
-                    <li class="@yield('adminDashboardclass')">
+                    <li class=@yield('adminDashboardclass')>
                         <a href="{{ route('adminDashboard') }}">
                             <i class="glyphicon glyphicon-home"></i>
                             Dashboard
@@ -166,7 +166,32 @@
                             </button>
                         </div>
 
-                        <div class="" id="">
+                        <div class="navbar-header">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true">
+                                <button class="btn btn-primary">
+                                    Notifications<sup><span class="caret">{{ count(auth()->user()->unreadNotifications) }}</span></sup>
+                                </button>
+                            </a>
+                        
+                            <ul class="dropdown-menu">
+                                @if (count(auth()->user()->unreadNotifications)>0)
+                                    @foreach (auth()->user()->unreadNotifications as $notification )
+                                        <div href="">
+                                            <h5>{{ $notification->data['by'] }}</h5>
+                                            booked for route
+                                            <h6>{{ $notification->data['route'] }}</h6> 
+                                            for the date
+                                            <small>{{ $notification->data['date'] }}</small>
+                                        </div>
+                                        <hr>
+                                    @endforeach
+                                @else
+                                    <h4>All notifications caught up</h4>
+                                @endif
+                            </ul>
+                        </div>
+
+                        <div class="navbar-header">
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf 
                                 <button class="btn btn-primary">Logout</button>

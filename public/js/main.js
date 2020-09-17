@@ -1,4 +1,11 @@
 $(document).ready(function () {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+
     $('#vehicleType').change(function(e){
         // var value= $(this).children("option:selected").val();
         var value = e.target.value;
@@ -17,6 +24,39 @@ $(document).ready(function () {
                 console.log('success');
             }
         });
+    });
+
+   
+
+    $('#vehicle').change(function(e){
+        // var value= $(this).children("option:selected").val();
+        var regNo = e.target.value;
+        var date = document.getElementById('date').value;
+        console.log(regNo);
+        console.log(date);
+        $.ajax({
+            type:"get",    
+            url:"/vehicle/"+date+"/"+regNo+"/availableSeats",
+
+            success:function (data) {
+                var len = Object.keys(data.seats).length;
+                //console.log(len);
+                $('#seats').empty();
+                if(len>0)
+                {
+                    $.each(data.seats,function(index,seats){
+                        //console.log(seats.seatNumber);
+                        $('#seats').append("<input type='checkbox' name='seats[]' value='" + seats.seatNumber + "' />" + seats.seatNumber);
+                    })
+                    console.log('success');
+                }
+                if(len==0)
+                {
+                    $('#seats').append("<b>No seat available for the day</b>");
+                }
+            }
+        });
+
     });
 
     $('#bookingId').change(function(e){

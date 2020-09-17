@@ -64,6 +64,7 @@ class BookingController extends Controller
             'date'              => 'required | date | after:today',
             'vehicleType'       => 'required | string',
             'vehicleNo'         => 'required | string',
+            'seats.*'           => 'required ',
             'route'             => 'required | string',
             'adultPassengers'   => 'required | integer',
             'childPassengers'   => 'nullable | integer',
@@ -75,11 +76,27 @@ class BookingController extends Controller
             'pickupLocation'    => 'required | string',
             'dropLocation'      => 'required | string',
         ]);
+        //dd($request->all());
+        $totalPassengers=$request->adultPassengers+$request->childPassengers+$request->specialPassengers;
+        $seats=count($request->seats);
 
+        if(count($request->seats)<$totalPassengers)
+        {
+            return back()->withInput($request->input())
+                         ->with('error','Less seats reserved than total passengers');
+        }
+
+        if(count($request->seats)>$totalPassengers)
+        {
+            return back()->withInput($request->input())->with('error','You cannot reserve seats more than the total passengers');
+
+        }
+        
         $booking= Booking::create([
             'date' => $request->date,
             'vehicleType' => $request->vehicleType,
             'vehicleNo' =>$request->vehicleNo,
+            'seats' => json_encode($request->seats),
             'route' => $request->route,
             'adultPassengers' => $request->adultPassengers,
             'childPassengers' => $request->childPassengers,

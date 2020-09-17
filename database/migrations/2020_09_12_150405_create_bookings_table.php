@@ -18,6 +18,7 @@ class CreateBookingsTable extends Migration
             $table->date('date');
             $table->string('vehicleType');
             $table->string('vehicleNo');
+            $table->string('seats');
             $table->string('route');
             $table->integer('adultPassengers');
             $table->integer('childPassengers');

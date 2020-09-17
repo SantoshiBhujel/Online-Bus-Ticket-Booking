@@ -17,7 +17,7 @@
                     <label for="date" class="col-md-4 col-form-label text-md-right">{{ __('Date') }}</label>
 
                     <div class="col-md-6">
-                        <input id="" type="date" name="date" required  autofocus>
+                        <input id="date" type="date" name="date" required  autofocus>
                     </div>
                 </div>
 
@@ -36,13 +36,20 @@
                 </div>
 
                 <div class="form-group row">
-                    <label for="vehicle" class="col-md-4 col-form-label text-md-right">{{ __('Vehicles Available') }}</label>
+                    <label for="vehicle" class="col-md-4 col-form-label text-md-right">{{ __('Vehicles Available') }}</label>              
                     <div class="col-md-6">
                         <select id="vehicle" name="vehicleNo" required>
                         </select>
                     </div>
                 </div>
 
+                <div class="form-group row">
+                    <label for="seats" class="col-md-4 col-form-label text-md-right">{{ __('Available Seats') }}</label>
+                    <div class="col-md-6" id="seats">
+                        
+                    </div>
+                </div>
+                
                 <div class="form-group row">
                     <label for="route" class="col-md-4 col-form-label text-md-right">{{ __('Route Name') }}</label>
 

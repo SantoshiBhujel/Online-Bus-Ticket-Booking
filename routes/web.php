@@ -121,5 +121,11 @@ Route::post('/notification/get', 'HomeController@getNotifications');
 Route::get('/cancel/booking','BookingController@cancel')->name('bookingCancel');
 Route::post('/cancel/booking','BookingController@cancelBooking')->name('booking.Cancel');
 
+
+//  --------------------------
+//  ROUTE FOR AVAILABLE SEATS
+//  --------------------------
+Route::get('/vehicle/{date}/{regNo}/availableSeats','HomeController@getAvailableSeats');
+
 Route::post('admin/employee/create', 'AdminController@employeeCreate')->name('employeeCreate')->middleware('admin');
 

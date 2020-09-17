@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\Vehicle;
 use App\VehicleType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -64,5 +65,16 @@ class HomeController extends Controller
     {
         $notification = Auth::user()->unreadNotifications;    
         return  $notification;
+    }
+
+    public function getAvailableSeats($date,$regNo)
+    {
+        $id= Vehicle::where('regNo',$regNo)->pluck('id')->first();
+        //print_r($id);
+        $seats=  Vehicle::find($id)->seats()->where('date',$date)->where('availability',true)->get();
+        //dd(count($seats));
+        return response()->json([
+            'seats' => $seats
+        ]);
     }
 }

@@ -17,6 +17,7 @@ class UserBooking extends Model
         'date',
         'vehicleType',
         'vehicleNo', 
+        'seats',
         'route',
         'adultPassengers',
         'childPassengers',

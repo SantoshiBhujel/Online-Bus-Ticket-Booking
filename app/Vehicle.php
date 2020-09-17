@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Vehicle extends Model
 {
     use SoftDeletes;
-    protected $dates = ['deleted_at']; 
+    protected $dates = ['deleted_at'];
 
     protected $fillable =[
         'regNo', 'vehicleType', 'engineNo', 'chassisNo', 'modelNo', 'ownerName', 'ownerNumber','brandName', 'status'
@@ -17,5 +17,10 @@ class Vehicle extends Model
     public function vehicleType()
     {
         return $this->belongsTo(VehicleType::class, 'vehicleType_id', 'id');
+    }
+
+    public function seats()
+    {
+        return $this->hasMany(VehicleSeatAvailability::class, 'vehicles_id', 'id');
     }
 }
